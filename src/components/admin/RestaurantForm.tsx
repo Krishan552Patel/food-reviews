@@ -185,7 +185,7 @@ export default function RestaurantForm({
   }
 
   const inputClass =
-    "mt-1 block w-full rounded-lg border border-stone-300 px-3 py-2 text-stone-900 shadow-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500";
+    "mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -209,7 +209,7 @@ export default function RestaurantForm({
           <div className="mt-1 flex items-center gap-2">
             <input type="text" value={slug}
               onChange={(e) => { setSlug(e.target.value); setAutoSlug(false); }}
-              className="block w-full rounded-lg border border-stone-300 px-3 py-2 text-stone-900 shadow-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+              className="block w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
               placeholder="sakura-kitchen" />
             {!autoSlug && (
               <button type="button"
@@ -353,7 +353,7 @@ export default function RestaurantForm({
             <input type="text" value={address}
               onChange={(e) => handleAddressChange(e.target.value)}
               onFocus={() => { if (geoResults.length > 0) setShowGeoResults(true); }}
-              className="block w-full rounded-lg border border-stone-300 px-3 py-2 pr-10 text-stone-900 shadow-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+              className="block w-full rounded-lg border border-slate-300 px-3 py-2 pr-10 text-slate-900 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
               placeholder="Start typing an address..." />
             {geoLoading && (
               <div className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -408,7 +408,7 @@ export default function RestaurantForm({
           )}
           <input type="file" accept="image/jpeg,image/png,image/webp,image/gif"
             onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-            className="block w-full text-sm text-stone-500 file:mr-4 file:rounded-lg file:border-0 file:bg-orange-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-orange-700 hover:file:bg-orange-100" />
+            className="block w-full text-sm text-slate-500 file:mr-4 file:rounded-lg file:border-0 file:bg-indigo-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-indigo-700 hover:file:bg-indigo-100" />
           <p className="mt-1 text-xs text-stone-400">JPEG, PNG, WebP, or GIF. Max 5MB.</p>
         </div>
         {errors.image && <p className="mt-1 text-sm text-red-600">{errors.image}</p>}
@@ -417,7 +417,7 @@ export default function RestaurantForm({
       {/* ==================== SUBMIT ==================== */}
       <div className="flex items-center gap-4 pt-4">
         <button type="submit" disabled={isLoading}
-          className="rounded-lg bg-orange-600 px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+          className="rounded-lg bg-[#020361] px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#0a0c6e] disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
           {isLoading ? "Saving..." : submitLabel}
         </button>
         <a href="/admin" className="text-sm text-stone-500 hover:text-stone-700">Cancel</a>

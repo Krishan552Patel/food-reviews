@@ -14,9 +14,9 @@ interface MapViewProps {
 }
 
 const categoryColors: Record<string, string> = {
-  restaurant: "#e85d26",
-  bubble_tea: "#9333ea",
-  cafe: "#ca8a04",
+  restaurant: "#020361",
+  bubble_tea: "#14b8a6",
+  cafe: "#6366f1",
 };
 
 export default function MapView({
@@ -67,19 +67,19 @@ export default function MapView({
 
     // Add markers for each restaurant
     restaurants.forEach((r) => {
-      const color = categoryColors[r.category] || "#e85d26";
+      const color = categoryColors[r.category] || "#020361";
 
       const popup = new maplibregl.Popup({ offset: 25, maxWidth: "220px" }).setHTML(`
         <div style="text-align: center; padding: 4px 0;">
-          <h3 style="font-weight: 700; font-size: 14px; color: #1a1714; margin: 0 0 4px 0;">
+          <h3 style="font-weight: 700; font-size: 14px; color: #0a0c2e; margin: 0 0 4px 0;">
             ${r.name}
           </h3>
-          <div style="color: #f59e0b; font-size: 13px; margin-bottom: 6px;">
+          <div style="color: #6366f1; font-size: 13px; margin-bottom: 6px;">
             ${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}
           </div>
           <a
             href="/restaurant/${r.slug}"
-            style="color: #e85d26; font-size: 13px; font-weight: 500; text-decoration: none;"
+            style="color: #2d4de0; font-size: 13px; font-weight: 500; text-decoration: none;"
           >
             Read review →
           </a>

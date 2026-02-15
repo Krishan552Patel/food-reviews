@@ -63,14 +63,14 @@ export default async function Home({ searchParams }: HomeProps) {
       <section
         className="relative overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #fef7f0 0%, #fdf2e9 50%, #fef5ee 100%)",
+          background: "linear-gradient(135deg, #eef0fa 0%, #e8ebf7 50%, #eef0fa 100%)",
         }}
       >
         {/* Subtle pattern overlay */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: "radial-gradient(circle at 1px 1px, rgba(232,93,38,0.04) 1px, transparent 0)",
+            backgroundImage: "radial-gradient(circle at 1px 1px, rgba(2,3,97,0.04) 1px, transparent 0)",
             backgroundSize: "32px 32px",
           }}
         />
@@ -147,7 +147,7 @@ export default async function Home({ searchParams }: HomeProps) {
               <Link
                 href="/"
                 className="gradient-accent mt-5 rounded-full px-6 py-2.5 text-sm font-medium text-white transition-shadow hover:shadow-lg"
-                style={{ boxShadow: "0 4px 14px rgba(232, 93, 38, 0.3)" }}
+                style={{ boxShadow: "0 4px 14px rgba(2, 3, 97, 0.3)" }}
               >
                 Clear filters
               </Link>

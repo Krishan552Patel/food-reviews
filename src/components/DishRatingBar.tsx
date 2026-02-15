@@ -10,13 +10,13 @@ export default function DishRatingBar({ label, rating }: DishRatingBarProps) {
         <div className="flex items-center gap-3">
             <span
                 className="w-16 text-sm font-medium"
-                style={{ color: "#57534e" }}
+                style={{ color: "#4a4c6d" }}
             >
                 {label}
             </span>
 
             {/* Bar track */}
-            <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "#f0ebe5" }}>
+            <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "#e4e6f0" }}>
                 <div
                     className="h-full rounded-full transition-all duration-700 ease-out"
                     style={{

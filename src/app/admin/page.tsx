@@ -123,7 +123,7 @@ export default function AdminPage() {
   if (checking) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-stone-300 border-t-orange-500" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-indigo-600" />
       </div>
     );
   }
@@ -133,11 +133,11 @@ export default function AdminPage() {
     return (
       <div className="flex min-h-[80vh] items-center justify-center px-4">
         <div className="w-full max-w-sm">
-          <div className="rounded-2xl border border-stone-200 bg-white p-8 shadow-sm">
-            <h1 className="mb-1 text-xl font-bold text-stone-900">
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <h1 className="mb-1 text-xl font-bold text-slate-900">
               Admin Access
             </h1>
-            <p className="mb-6 text-sm text-stone-500">
+            <p className="mb-6 text-sm text-slate-500">
               Enter your password to continue
             </p>
 
@@ -148,7 +148,7 @@ export default function AdminPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
-                  className="block w-full rounded-lg border border-stone-300 px-3 py-2.5 text-stone-900 shadow-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+                  className="block w-full rounded-lg border border-slate-300 px-3 py-2.5 text-slate-900 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
                   autoFocus
                 />
               </div>
@@ -160,7 +160,7 @@ export default function AdminPage() {
               <button
                 type="submit"
                 disabled={loginLoading || !password}
-                className="w-full rounded-lg bg-stone-900 py-2.5 text-sm font-medium text-white hover:bg-stone-800 disabled:opacity-50 transition-colors"
+                className="w-full rounded-lg bg-[#020361] py-2.5 text-sm font-medium text-white hover:bg-[#0a0c6e] disabled:opacity-50 transition-colors"
               >
                 {loginLoading ? "Checking..." : "Sign In"}
               </button>
@@ -215,7 +215,7 @@ export default function AdminPage() {
           </h2>
           <Link
             href="/admin/new"
-            className="rounded-lg bg-orange-600 px-4 py-2 text-sm font-medium text-white hover:bg-orange-700 transition-colors"
+            className="rounded-lg bg-[#020361] px-4 py-2 text-sm font-medium text-white hover:bg-[#0a0c6e] transition-colors"
           >
             + Add Review
           </Link>
@@ -223,14 +223,14 @@ export default function AdminPage() {
 
         {loadingData ? (
           <div className="flex justify-center py-12">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-stone-300 border-t-orange-500" />
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-indigo-600" />
           </div>
         ) : restaurants.length === 0 ? (
           <div className="rounded-xl border border-dashed border-stone-300 py-12 text-center">
             <p className="text-stone-400">No reviews yet</p>
             <Link
               href="/admin/new"
-              className="mt-2 inline-block text-sm font-medium text-orange-600 hover:underline"
+              className="mt-2 inline-block text-sm font-medium text-indigo-600 hover:underline"
             >
               Add your first review
             </Link>
@@ -276,10 +276,10 @@ export default function AdminPage() {
                       {categoryLabels[r.category]}
                     </td>
                     <td className="hidden px-4 py-3 sm:table-cell">
-                      <span className="text-yellow-500">
+                      <span className="text-indigo-400">
                         {"★".repeat(r.rating)}
                       </span>
-                      <span className="text-stone-300">
+                      <span className="text-slate-300">
                         {"★".repeat(5 - r.rating)}
                       </span>
                     </td>

@@ -30,7 +30,7 @@ export default function ImageGallery({ images, name }: ImageGalleryProps) {
         <button
           onClick={() => setLightboxOpen(true)}
           className="relative w-full aspect-video overflow-hidden rounded-xl cursor-zoom-in group"
-          style={{ background: "#f0ebe5" }}
+          style={{ background: "#e4e6f0" }}
           aria-label="Open full-size image"
         >
           <Image

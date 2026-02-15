@@ -11,9 +11,9 @@ const categoryLabels: Record<string, string> = {
 };
 
 const categoryStyles: Record<string, { bg: string; text: string; dot: string }> = {
-  restaurant: { bg: "rgba(232, 93, 38, 0.08)", text: "#c44b1a", dot: "#e85d26" },
-  bubble_tea: { bg: "rgba(147, 51, 234, 0.08)", text: "#7c3aed", dot: "#9333ea" },
-  cafe: { bg: "rgba(202, 138, 4, 0.08)", text: "#a16207", dot: "#ca8a04" },
+  restaurant: { bg: "rgba(2, 3, 97, 0.08)", text: "#020361", dot: "#2d4de0" },
+  bubble_tea: { bg: "rgba(20, 184, 166, 0.08)", text: "#0f766e", dot: "#14b8a6" },
+  cafe: { bg: "rgba(99, 102, 241, 0.08)", text: "#4338ca", dot: "#6366f1" },
 };
 
 export default function RestaurantCard({
@@ -33,7 +33,7 @@ export default function RestaurantCard({
       className="card group block overflow-hidden"
     >
       {/* Image */}
-      <div className="relative aspect-[4/3] overflow-hidden" style={{ background: "#f0ebe5" }}>
+      <div className="relative aspect-[4/3] overflow-hidden" style={{ background: "#e4e6f0" }}>
         {imageUrl ? (
           <Image
             src={imageUrl}
@@ -114,7 +114,7 @@ export default function RestaurantCard({
         {restaurant.review_text && (
           <p
             className="mt-3 line-clamp-2 text-sm leading-relaxed"
-            style={{ color: "#78716c" }}
+            style={{ color: "#64668a" }}
           >
             {restaurant.review_text}
           </p>

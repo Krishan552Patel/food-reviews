@@ -8,7 +8,7 @@ const MapView = dynamic(() => import("./MapView"), {
   loading: () => (
     <div
       className="flex h-full w-full items-center justify-center"
-      style={{ background: "#f0ebe5" }}
+      style={{ background: "#e4e6f0" }}
     >
       <div className="flex flex-col items-center gap-3">
         <div

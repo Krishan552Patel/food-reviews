@@ -181,7 +181,7 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
     }
 
     const inputClass =
-        "mt-1 block w-full rounded-lg border border-stone-300 px-3 py-2 text-stone-900 shadow-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500";
+        "mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500";
 
     return (
         <div>
@@ -192,7 +192,7 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
                     <button
                         type="button"
                         onClick={startAdd}
-                        className="rounded-lg bg-orange-600 px-4 py-2 text-sm font-medium text-white hover:bg-orange-700 transition-colors"
+                        className="rounded-lg bg-[#020361] px-4 py-2 text-sm font-medium text-white hover:bg-[#0a0c6e] transition-colors"
                     >
                         + Add Item
                     </button>
@@ -212,7 +212,7 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
                     <button
                         type="button"
                         onClick={startAdd}
-                        className="mt-2 text-sm font-medium text-orange-600 hover:underline"
+                        className="mt-2 text-sm font-medium text-indigo-600 hover:underline"
                     >
                         Add your first item
                     </button>
@@ -385,7 +385,7 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
                             <div className="mt-2 flex flex-wrap gap-2">
                                 {newPreviews.map((src, i) => (
                                     <div key={`new-${i}`} className="group relative">
-                                        <div className="relative h-16 w-20 overflow-hidden rounded-lg bg-stone-100 ring-2 ring-orange-300">
+                                        <div className="relative h-16 w-20 overflow-hidden rounded-lg bg-slate-100 ring-2 ring-indigo-300">
                                             <Image
                                                 src={src}
                                                 alt={`New photo ${i + 1}`}
@@ -414,7 +414,7 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
                                 const files = Array.from(e.target.files || []);
                                 setNewFiles((prev) => [...prev, ...files]);
                             }}
-                            className="mt-2 block w-full text-sm text-stone-500 file:mr-4 file:rounded-lg file:border-0 file:bg-orange-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-orange-700 hover:file:bg-orange-100"
+                            className="mt-2 block w-full text-sm text-slate-500 file:mr-4 file:rounded-lg file:border-0 file:bg-indigo-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-indigo-700 hover:file:bg-indigo-100"
                         />
                         {errors.upload && <p className="mt-1 text-sm text-red-600">{errors.upload}</p>}
                     </div>
@@ -430,7 +430,7 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
                         <button
                             type="submit"
                             disabled={saving}
-                            className="rounded-lg bg-orange-600 px-5 py-2 text-sm font-medium text-white shadow-sm hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            className="rounded-lg bg-[#020361] px-5 py-2 text-sm font-medium text-white shadow-sm hover:bg-[#0a0c6e] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                         >
                             {saving ? "Saving..." : editingDish ? "Update Item" : "Add Item"}
                         </button>

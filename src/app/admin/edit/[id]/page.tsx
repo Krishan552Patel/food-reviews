@@ -64,7 +64,7 @@ export default function EditRestaurantPage({
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-stone-300 border-t-orange-500" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-indigo-600" />
       </div>
     );
   }
@@ -75,7 +75,7 @@ export default function EditRestaurantPage({
         <p className="text-stone-500">Restaurant not found</p>
         <Link
           href="/admin"
-          className="text-sm font-medium text-orange-600 hover:underline"
+          className="text-sm font-medium text-indigo-600 hover:underline"
         >
           Back to Dashboard
         </Link>

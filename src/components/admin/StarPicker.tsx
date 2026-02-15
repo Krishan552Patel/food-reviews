@@ -27,7 +27,7 @@ export default function StarPicker({ value, onChange }: StarPickerProps) {
           >
             <svg
               className={`h-8 w-8 ${
-                isFilled ? "text-yellow-400" : "text-stone-300"
+                isFilled ? "text-indigo-400" : "text-slate-300"
               } transition-colors`}
               fill="currentColor"
               viewBox="0 0 20 20"

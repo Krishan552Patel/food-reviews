@@ -21,9 +21,9 @@ const categoryLabels: Record<string, string> = {
 };
 
 const categoryStyles: Record<string, { bg: string; text: string; dot: string }> = {
-  restaurant: { bg: "rgba(232, 93, 38, 0.08)", text: "#c44b1a", dot: "#e85d26" },
-  bubble_tea: { bg: "rgba(147, 51, 234, 0.08)", text: "#7c3aed", dot: "#9333ea" },
-  cafe: { bg: "rgba(202, 138, 4, 0.08)", text: "#a16207", dot: "#ca8a04" },
+  restaurant: { bg: "rgba(2, 3, 97, 0.08)", text: "#020361", dot: "#2d4de0" },
+  bubble_tea: { bg: "rgba(20, 184, 166, 0.08)", text: "#0f766e", dot: "#14b8a6" },
+  cafe: { bg: "rgba(99, 102, 241, 0.08)", text: "#4338ca", dot: "#6366f1" },
 };
 
 export const dynamicParams = true;
@@ -197,7 +197,7 @@ export default async function RestaurantPage({ params }: PageProps) {
         >
           <div
             className="whitespace-pre-line leading-relaxed"
-            style={{ color: "#57534e" }}
+            style={{ color: "#4a4c6d" }}
           >
             {typedRestaurant.review_text}
           </div>
@@ -284,7 +284,7 @@ export default async function RestaurantPage({ params }: PageProps) {
                     </h3>
                     <p
                       className="whitespace-pre-line leading-relaxed"
-                      style={{ color: "#57534e" }}
+                      style={{ color: "#4a4c6d" }}
                     >
                       {section.content}
                     </p>
@@ -338,7 +338,7 @@ export default async function RestaurantPage({ params }: PageProps) {
                     {/* Rating breakdown */}
                     <div
                       className="mt-5 space-y-3 rounded-xl p-5"
-                      style={{ background: "#faf8f6", border: "1px solid var(--border-light)" }}
+                      style={{ background: "#f0f1f8", border: "1px solid var(--border-light)" }}
                     >
                       <DishRatingBar label="Food" rating={dish.food_rating} />
                       <DishRatingBar label="Service" rating={dish.service_rating} />
@@ -348,7 +348,7 @@ export default async function RestaurantPage({ params }: PageProps) {
                     {/* Review text */}
                     <p
                       className="mt-5 whitespace-pre-line leading-relaxed"
-                      style={{ color: "#78716c" }}
+                      style={{ color: "#64668a" }}
                     >
                       {dish.review_text}
                     </p>

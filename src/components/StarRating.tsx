@@ -16,7 +16,7 @@ export default function StarRating({ rating, size = "md" }: StarRatingProps) {
         <svg
           key={i}
           className={sizeClasses[size]}
-          style={{ color: i < rating ? "#f59e0b" : "#e7e1da" }}
+          style={{ color: i < rating ? "#6366f1" : "#d4d6e4" }}
           fill="currentColor"
           viewBox="0 0 20 20"
         >

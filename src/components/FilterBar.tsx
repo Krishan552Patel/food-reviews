@@ -61,7 +61,7 @@ function FilterBarInner({ cuisineTypes }: FilterBarInnerProps) {
       : "var(--surface)",
     color: isActive ? "#fff" : "var(--muted)",
     border: isActive ? "1px solid transparent" : "1px solid var(--border)",
-    boxShadow: isActive ? "0 2px 8px rgba(232, 93, 38, 0.25)" : "none",
+    boxShadow: isActive ? "0 2px 8px rgba(2, 3, 97, 0.25)" : "none",
   });
 
   return (

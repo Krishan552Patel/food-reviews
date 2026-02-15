@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf9f7;
-  --foreground: #1a1714;
-  --accent: #e85d26;
-  --accent-light: #ff7a45;
-  --accent-dark: #c44b1a;
-  --accent-glow: rgba(232, 93, 38, 0.15);
+  --background: #f5f6fa;
+  --foreground: #0a0c2e;
+  --accent: #020361;
+  --accent-light: #2d4de0;
+  --accent-dark: #010240;
+  --accent-glow: rgba(2, 3, 97, 0.12);
   --surface: #ffffff;
-  --surface-hover: #fdf5f0;
-  --border: #eae5df;
-  --border-light: #f2ede8;
-  --muted: #a39e96;
-  --card-shadow: 0 1px 3px rgba(26, 23, 20, 0.04), 0 4px 12px rgba(26, 23, 20, 0.03);
-  --card-shadow-hover: 0 4px 12px rgba(26, 23, 20, 0.08), 0 12px 32px rgba(26, 23, 20, 0.06);
+  --surface-hover: #eef0fa;
+  --border: #dde0ed;
+  --border-light: #eceef6;
+  --muted: #8b8fa6;
+  --card-shadow: 0 1px 3px rgba(2, 3, 97, 0.04), 0 4px 12px rgba(2, 3, 97, 0.03);
+  --card-shadow-hover: 0 4px 12px rgba(2, 3, 97, 0.08), 0 12px 32px rgba(2, 3, 97, 0.06);
   --glass-bg: rgba(255, 255, 255, 0.72);
   --glass-border: rgba(255, 255, 255, 0.4);
 }
@@ -50,7 +50,7 @@ body {
 }
 
 ::selection {
-  background: rgba(232, 93, 38, 0.2);
+  background: rgba(2, 3, 97, 0.2);
   color: var(--foreground);
 }
 
@@ -140,7 +140,7 @@ body {
 .card:hover {
   box-shadow: var(--card-shadow-hover);
   transform: translateY(-2px);
-  border-color: rgba(232, 93, 38, 0.15);
+  border-color: rgba(2, 3, 97, 0.15);
 }
 
 /* ============================
@@ -249,7 +249,7 @@ body {
    ============================ */
 
 .skeleton {
-  background: linear-gradient(90deg, #f0ebe5 25%, #f7f3ee 37%, #f0ebe5 63%);
+  background: linear-gradient(90deg, #e4e6f0 25%, #eef0f7 37%, #e4e6f0 63%);
   background-size: 200% 100%;
   animation: shimmer 1.4s ease-in-out infinite;
   border-radius: 8px;
