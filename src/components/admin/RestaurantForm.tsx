@@ -46,10 +46,11 @@ export default function RestaurantForm({
   const [address, setAddress] = useState(initialData?.address || "");
   const [latitude, setLatitude] = useState(initialData?.latitude?.toString() || "");
   const [longitude, setLongitude] = useState(initialData?.longitude?.toString() || "");
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(
-    initialData?.image_url ? `${SUPABASE_STORAGE_URL}/${initialData.image_url}` : null
+  const [existingImages, setExistingImages] = useState<string[]>(
+    initialData?.images || (initialData?.image_url ? [initialData.image_url] : [])
   );
+  const [newFiles, setNewFiles] = useState<File[]>([]);
+  const [newPreviews, setNewPreviews] = useState<string[]>([]);
   const [autoSlug, setAutoSlug] = useState(!initialData);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -78,14 +79,12 @@ export default function RestaurantForm({
     if (autoSlug) setSlug(slugify(name));
   }, [name, autoSlug]);
 
-  // Image preview
+  // Image previews for new files
   useEffect(() => {
-    if (imageFile) {
-      const url = URL.createObjectURL(imageFile);
-      setImagePreview(url);
-      return () => URL.revokeObjectURL(url);
-    }
-  }, [imageFile]);
+    const urls = newFiles.map((f) => URL.createObjectURL(f));
+    setNewPreviews(urls);
+    return () => urls.forEach((u) => URL.revokeObjectURL(u));
+  }, [newFiles]);
 
   // Close geo results when clicking outside
   useEffect(() => {
@@ -145,19 +144,23 @@ export default function RestaurantForm({
     e.preventDefault();
     if (!validate()) return;
 
-    let imageUrl = initialData?.image_url || null;
-    if (imageFile) {
-      const formData = new FormData();
-      formData.append("file", imageFile);
-      const uploadRes = await fetch("/api/admin/upload", { method: "POST", body: formData });
-      if (!uploadRes.ok) {
-        const err = await uploadRes.json();
-        setErrors({ image: err.error || "Image upload failed" });
-        return;
+    let uploadedPaths: string[] = [];
+    if (newFiles.length > 0) {
+      for (const file of newFiles) {
+        const formData = new FormData();
+        formData.append("file", file);
+        const uploadRes = await fetch("/api/admin/upload", { method: "POST", body: formData });
+        if (!uploadRes.ok) {
+          const err = await uploadRes.json();
+          setErrors({ image: err.error || "Image upload failed" });
+          return;
+        }
+        const { path } = await uploadRes.json();
+        uploadedPaths.push(path);
       }
-      const { path } = await uploadRes.json();
-      imageUrl = path;
     }
+
+    const allImages = [...existingImages, ...uploadedPaths];
 
     await onSubmit({
       name,
@@ -169,7 +172,8 @@ export default function RestaurantForm({
       address,
       latitude: parseFloat(latitude),
       longitude: parseFloat(longitude),
-      image_url: imageUrl,
+      image_url: allImages[0] || null,
+      images: allImages,
       // Category ratings (send null if not set)
       ambiance_rating: ambianceRating || null,
       cleanliness_rating: cleanlinessRating || null,
@@ -395,21 +399,46 @@ export default function RestaurantForm({
 
       <hr className="border-stone-200" />
 
-      {/* ==================== IMAGE ==================== */}
+      {/* ==================== IMAGES ==================== */}
       <fieldset>
         <legend className="text-sm font-semibold uppercase tracking-wider text-stone-400 mb-4">
-          Photo
+          Photos
         </legend>
         <div>
-          {imagePreview && (
-            <div className="relative mb-3 aspect-video w-full max-w-sm overflow-hidden rounded-lg bg-stone-100">
-              <Image src={imagePreview} alt="Preview" fill className="object-cover" sizes="400px" />
+          {/* Existing images */}
+          {existingImages.length > 0 && (
+            <div className="mb-3 flex flex-wrap gap-2">
+              {existingImages.map((img, i) => (
+                <div key={`existing-${i}`} className="group relative">
+                  <div className="relative h-20 w-24 overflow-hidden rounded-lg bg-stone-100">
+                    <Image src={`${SUPABASE_STORAGE_URL}/${img}`} alt={`Photo ${i + 1}`} fill className="object-cover" sizes="96px" />
+                  </div>
+                  <button type="button" onClick={() => setExistingImages((prev) => prev.filter((_, idx) => idx !== i))}
+                    className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white shadow-sm hover:bg-red-600">×</button>
+                </div>
+              ))}
             </div>
           )}
-          <input type="file" accept="image/jpeg,image/png,image/webp,image/gif"
-            onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+
+          {/* New file previews */}
+          {newPreviews.length > 0 && (
+            <div className="mb-3 flex flex-wrap gap-2">
+              {newPreviews.map((src, i) => (
+                <div key={`new-${i}`} className="group relative">
+                  <div className="relative h-20 w-24 overflow-hidden rounded-lg bg-slate-100 ring-2 ring-indigo-300">
+                    <Image src={src} alt={`New photo ${i + 1}`} fill className="object-cover" sizes="96px" />
+                  </div>
+                  <button type="button" onClick={() => setNewFiles((prev) => prev.filter((_, idx) => idx !== i))}
+                    className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white shadow-sm hover:bg-red-600">×</button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple
+            onChange={(e) => { const files = Array.from(e.target.files || []); setNewFiles((prev) => [...prev, ...files]); }}
             className="block w-full text-sm text-slate-500 file:mr-4 file:rounded-lg file:border-0 file:bg-indigo-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-indigo-700 hover:file:bg-indigo-100" />
-          <p className="mt-1 text-xs text-stone-400">JPEG, PNG, WebP, or GIF. Max 5MB.</p>
+          <p className="mt-1 text-xs text-stone-400">JPEG, PNG, WebP, or GIF. Max 5MB each. You can select multiple files.</p>
         </div>
         {errors.image && <p className="mt-1 text-sm text-red-600">{errors.image}</p>}
       </fieldset>

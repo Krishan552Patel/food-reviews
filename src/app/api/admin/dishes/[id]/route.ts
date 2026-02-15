@@ -46,7 +46,7 @@ export async function PATCH(
         const body = await request.json();
 
         // Validate ratings if provided
-        for (const field of ["food_rating", "service_rating", "price_rating"]) {
+        for (const field of ["food_rating"]) {
             if (body[field] !== undefined && (body[field] < 1 || body[field] > 5)) {
                 return NextResponse.json(
                     { error: `${field} must be between 1 and 5` },
@@ -62,8 +62,6 @@ export async function PATCH(
             "name",
             "review_text",
             "food_rating",
-            "service_rating",
-            "price_rating",
             "images",
         ];
 

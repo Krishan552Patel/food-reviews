@@ -51,8 +51,6 @@ export async function POST(request: NextRequest) {
             "name",
             "review_text",
             "food_rating",
-            "service_rating",
-            "price_rating",
         ];
         for (const field of required) {
             if (!body[field] && body[field] !== 0) {
@@ -64,7 +62,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Validate ratings
-        for (const field of ["food_rating", "service_rating", "price_rating"]) {
+        for (const field of ["food_rating"]) {
             if (body[field] < 1 || body[field] > 5) {
                 return NextResponse.json(
                     { error: `${field} must be between 1 and 5` },
@@ -96,8 +94,6 @@ export async function POST(request: NextRequest) {
                 name: body.name,
                 review_text: body.review_text,
                 food_rating: body.food_rating,
-                service_rating: body.service_rating,
-                price_rating: body.price_rating,
                 images: body.images || [],
             })
             .select()

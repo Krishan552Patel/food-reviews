@@ -25,8 +25,6 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
     const [name, setName] = useState("");
     const [reviewText, setReviewText] = useState("");
     const [foodRating, setFoodRating] = useState(0);
-    const [serviceRating, setServiceRating] = useState(0);
-    const [priceRating, setPriceRating] = useState(0);
     const [existingImages, setExistingImages] = useState<string[]>([]);
     const [newFiles, setNewFiles] = useState<File[]>([]);
     const [newPreviews, setNewPreviews] = useState<string[]>([]);
@@ -64,8 +62,6 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
         setName("");
         setReviewText("");
         setFoodRating(0);
-        setServiceRating(0);
-        setPriceRating(0);
         setExistingImages([]);
         setNewFiles([]);
         setNewPreviews([]);
@@ -79,8 +75,6 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
         setName(dish.name);
         setReviewText(dish.review_text);
         setFoodRating(dish.food_rating);
-        setServiceRating(dish.service_rating);
-        setPriceRating(dish.price_rating);
         setExistingImages(dish.images || []);
         setNewFiles([]);
         setNewPreviews([]);
@@ -98,8 +92,6 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
         if (!name.trim()) newErrors.name = "Name is required";
         if (!reviewText.trim()) newErrors.reviewText = "Review is required";
         if (!foodRating) newErrors.foodRating = "Food rating is required";
-        if (!serviceRating) newErrors.serviceRating = "Service rating is required";
-        if (!priceRating) newErrors.priceRating = "Price rating is required";
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     }
@@ -135,8 +127,6 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
             name,
             review_text: reviewText,
             food_rating: foodRating,
-            service_rating: serviceRating,
-            price_rating: priceRating,
             images: allImages,
         };
 
@@ -240,7 +230,7 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
                                     <div className="min-w-0">
                                         <p className="font-medium text-stone-900 truncate">{dish.name}</p>
                                         <p className="text-xs text-stone-400 mt-0.5">
-                                            Food {dish.food_rating}/5 · Service {dish.service_rating}/5 · Price {dish.price_rating}/5
+                                            Food Rating: {dish.food_rating}/5
                                         </p>
                                     </div>
                                 </div>
@@ -317,24 +307,14 @@ export default function DishManager({ restaurantId }: DishManagerProps) {
                         {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
                     </div>
 
-                    {/* Ratings */}
-                    <div className="space-y-3 rounded-lg border border-stone-200 bg-stone-50 p-4">
-                        <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">Ratings</p>
+                    {/* Rating */}
+                    <div className="space-y-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Rating</p>
                         <div className="flex items-center justify-between">
-                            <label className="text-sm font-medium text-stone-600">Food</label>
+                            <label className="text-sm font-medium text-slate-600">Food Rating</label>
                             <StarPicker value={foodRating} onChange={setFoodRating} />
                         </div>
                         {errors.foodRating && <p className="text-sm text-red-600">{errors.foodRating}</p>}
-                        <div className="flex items-center justify-between">
-                            <label className="text-sm font-medium text-stone-600">Service</label>
-                            <StarPicker value={serviceRating} onChange={setServiceRating} />
-                        </div>
-                        {errors.serviceRating && <p className="text-sm text-red-600">{errors.serviceRating}</p>}
-                        <div className="flex items-center justify-between">
-                            <label className="text-sm font-medium text-stone-600">Price</label>
-                            <StarPicker value={priceRating} onChange={setPriceRating} />
-                        </div>
-                        {errors.priceRating && <p className="text-sm text-red-600">{errors.priceRating}</p>}
                     </div>
 
                     {/* Review */}

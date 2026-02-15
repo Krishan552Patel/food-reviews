@@ -82,9 +82,13 @@ export default async function RestaurantPage({ params }: PageProps) {
 
   const dishes = (dishesData as Dish[] | null) || [];
 
-  const images = typedRestaurant.image_url
-    ? [`${SUPABASE_STORAGE_URL}/${typedRestaurant.image_url}`]
-    : [];
+  // Build images array: prefer new images array, fall back to legacy image_url
+  const restaurantImages: string[] = (() => {
+    const imgs = (typedRestaurant.images || []).map((img: string) => `${SUPABASE_STORAGE_URL}/${img}`);
+    if (imgs.length > 0) return imgs;
+    if (typedRestaurant.image_url) return [`${SUPABASE_STORAGE_URL}/${typedRestaurant.image_url}`];
+    return [];
+  })();
 
   const style = categoryStyles[typedRestaurant.category] || categoryStyles.restaurant;
 
@@ -105,8 +109,8 @@ export default async function RestaurantPage({ params }: PageProps) {
 
       {/* Image section */}
       <div className="mx-auto max-w-4xl px-5 pt-6">
-        {images.length > 0 && (
-          <ImageGallery images={images} name={typedRestaurant.name} />
+        {restaurantImages.length > 0 && (
+          <ImageGallery images={restaurantImages} name={typedRestaurant.name} />
         )}
       </div>
 
@@ -335,14 +339,15 @@ export default async function RestaurantPage({ params }: PageProps) {
                       {dish.name}
                     </h3>
 
-                    {/* Rating breakdown */}
+                    {/* Rating */}
                     <div
-                      className="mt-5 space-y-3 rounded-xl p-5"
+                      className="mt-5 flex items-center gap-3 rounded-xl p-4"
                       style={{ background: "#f0f1f8", border: "1px solid var(--border-light)" }}
                     >
-                      <DishRatingBar label="Food" rating={dish.food_rating} />
-                      <DishRatingBar label="Service" rating={dish.service_rating} />
-                      <DishRatingBar label="Price" rating={dish.price_rating} />
+                      <span className="text-sm font-medium" style={{ color: "#4a4c6d" }}>Food Rating</span>
+                      <div className="flex-1">
+                        <DishRatingBar label="" rating={dish.food_rating} />
+                      </div>
                     </div>
 
                     {/* Review text */}

@@ -86,6 +86,7 @@ export async function POST(request: NextRequest) {
         latitude: parseFloat(body.latitude),
         longitude: parseFloat(body.longitude),
         image_url: body.image_url || null,
+        images: body.images || [],
         // Category ratings
         ambiance_rating: body.ambiance_rating || null,
         cleanliness_rating: body.cleanliness_rating || null,

@@ -10,6 +10,7 @@ export interface Restaurant {
   latitude: number;
   longitude: number;
   image_url: string | null;
+  images: string[];
   // Category ratings (nullable, 1-5)
   ambiance_rating: number | null;
   cleanliness_rating: number | null;
@@ -30,8 +31,6 @@ export interface Dish {
   name: string;
   review_text: string;
   food_rating: number;
-  service_rating: number;
-  price_rating: number;
   images: string[];
   created_at: string;
 }

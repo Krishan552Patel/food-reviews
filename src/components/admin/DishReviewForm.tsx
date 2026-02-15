@@ -29,12 +29,6 @@ export default function DishReviewForm({
     const [name, setName] = useState(initialData?.name || "");
     const [reviewText, setReviewText] = useState(initialData?.review_text || "");
     const [foodRating, setFoodRating] = useState(initialData?.food_rating || 0);
-    const [serviceRating, setServiceRating] = useState(
-        initialData?.service_rating || 0
-    );
-    const [priceRating, setPriceRating] = useState(
-        initialData?.price_rating || 0
-    );
     const [existingImages, setExistingImages] = useState<string[]>(
         initialData?.images || []
     );
@@ -89,8 +83,6 @@ export default function DishReviewForm({
         if (!name.trim()) newErrors.name = "Dish name is required";
         if (!reviewText.trim()) newErrors.reviewText = "Review text is required";
         if (!foodRating) newErrors.foodRating = "Food rating is required";
-        if (!serviceRating) newErrors.serviceRating = "Service rating is required";
-        if (!priceRating) newErrors.priceRating = "Price rating is required";
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -133,8 +125,6 @@ export default function DishReviewForm({
             name,
             review_text: reviewText,
             food_rating: foodRating,
-            service_rating: serviceRating,
-            price_rating: priceRating,
             images: allImages,
         });
     }
@@ -185,14 +175,12 @@ export default function DishReviewForm({
                 )}
             </div>
 
-            {/* Ratings */}
-            <div className="space-y-4 rounded-xl border border-stone-200 bg-stone-50 p-4">
-                <h3 className="text-sm font-semibold text-stone-700">Ratings</h3>
-
-                {/* Food Rating */}
+            {/* Rating */}
+            <div className="space-y-4 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                <h3 className="text-sm font-semibold text-slate-700">Rating</h3>
                 <div className="flex items-center justify-between">
-                    <label className="flex items-center gap-2 text-sm font-medium text-stone-600">
-                        <span className="text-lg">🍽️</span> Food
+                    <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                        <span className="text-lg">🍽️</span> Food Rating
                     </label>
                     <div>
                         <StarPicker value={foodRating} onChange={setFoodRating} />
@@ -200,32 +188,6 @@ export default function DishReviewForm({
                 </div>
                 {errors.foodRating && (
                     <p className="text-sm text-red-600">{errors.foodRating}</p>
-                )}
-
-                {/* Service Rating */}
-                <div className="flex items-center justify-between">
-                    <label className="flex items-center gap-2 text-sm font-medium text-stone-600">
-                        <span className="text-lg">🙋</span> Service
-                    </label>
-                    <div>
-                        <StarPicker value={serviceRating} onChange={setServiceRating} />
-                    </div>
-                </div>
-                {errors.serviceRating && (
-                    <p className="text-sm text-red-600">{errors.serviceRating}</p>
-                )}
-
-                {/* Price Rating */}
-                <div className="flex items-center justify-between">
-                    <label className="flex items-center gap-2 text-sm font-medium text-stone-600">
-                        <span className="text-lg">💰</span> Price
-                    </label>
-                    <div>
-                        <StarPicker value={priceRating} onChange={setPriceRating} />
-                    </div>
-                </div>
-                {errors.priceRating && (
-                    <p className="text-sm text-red-600">{errors.priceRating}</p>
                 )}
             </div>
 

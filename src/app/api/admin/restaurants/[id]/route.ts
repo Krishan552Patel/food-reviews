@@ -88,6 +88,7 @@ export async function PATCH(
       "latitude",
       "longitude",
       "image_url",
+      "images",
       "ambiance_rating",
       "cleanliness_rating",
       "service_rating",

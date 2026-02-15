@@ -21,9 +21,14 @@ export default function RestaurantCard({
 }: {
   restaurant: Restaurant;
 }) {
-  const imageUrl = restaurant.image_url
-    ? `${SUPABASE_STORAGE_URL}/${restaurant.image_url}`
+  // Use images array first, fall back to legacy image_url
+  const firstImage = restaurant.images?.length > 0
+    ? restaurant.images[0]
+    : restaurant.image_url;
+  const imageUrl = firstImage
+    ? `${SUPABASE_STORAGE_URL}/${firstImage}`
     : null;
+  const imageCount = restaurant.images?.length || (restaurant.image_url ? 1 : 0);
 
   const style = categoryStyles[restaurant.category] || categoryStyles.restaurant;
 
@@ -84,6 +89,19 @@ export default function RestaurantCard({
           />
           {categoryLabels[restaurant.category] || restaurant.category}
         </div>
+
+        {/* Multi-image badge */}
+        {imageCount > 1 && (
+          <div
+            className="absolute right-3 top-3 flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium text-white"
+            style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)" }}
+          >
+            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            {imageCount}
+          </div>
+        )}
       </div>
 
       {/* Info */}
